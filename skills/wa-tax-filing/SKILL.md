@@ -12,10 +12,35 @@ Prepare a Washington State Department of Revenue (DOR) sales tax filing from a S
 
 Export your Shopify sales data:
 
+### Option 1: ShopifyQL (recommended)
+
+Go to Shopify Admin > Analytics > Reports > **Total Sales over time** > click **Query** and paste:
+
+```sql
+FROM sales
+  SHOW orders, gross_sales, discounts, returns, net_sales, shipping_charges,
+    duties, additional_fees, taxes, total_sales, shipping_city, shipping_postal_code, shipping_region,
+  TIMESERIES day WITH TOTALS, PERCENT_CHANGE
+  SINCE startOfQuarter(-1q) UNTIL endOfQuarter(-1q)
+  ORDER BY day ASC
+  LIMIT 1000
+VISUALIZE orders TYPE line
+```
+
+Adjust the `-1q` values to target the quarter you need:
+- Last quarter: `startOfQuarter(-1q)` / `endOfQuarter(-1q)`
+- Two quarters ago: `startOfQuarter(-2q)` / `endOfQuarter(-2q)`
+
+Export the results as CSV.
+
+### Option 2: Manual export
+
 1. Go to Shopify Admin > Analytics > Reports > **Sales by order**
 2. Set the date range to the quarter you're filing (e.g., Jan 1 - Mar 31)
 3. Add columns: **Shipping city**, **Shipping postal code**, **Shipping region**
 4. Export as CSV
+
+### Required columns
 
 The CSV must contain these columns:
 - `Day`, `Sale ID`, `Order name`, `Product title at time of sale`
