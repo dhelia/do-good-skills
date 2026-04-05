@@ -11,8 +11,7 @@ Skills are reusable prompt templates that teach Claude Code how to perform speci
 | Skill | Command | Description |
 |-------|---------|-------------|
 | [WA Tax Filing](skills/wa-tax-filing/) | `/wa-tax-filing` | Prepare WA State sales tax filing from a Shopify CSV export. Computes B&O tax, sales tax by city, and flags anomalies. |
-
-More skills coming soon.
+| [Tax Prep](skills/tax-prep/) | `/tax-prep` | Categorize business expenses from bank/credit card CSVs, generate QuickBooks .qbo import files, and produce a Schedule C-ready P&L. |
 
 ## Installation
 
