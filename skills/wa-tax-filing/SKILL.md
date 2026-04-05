@@ -83,9 +83,11 @@ Read the CSV file. Aggregate line items by `Order name`. For each order, compute
 - Gross sales, Discounts, Returns, Net sales, Shipping charges, Taxes, Total sales
 - Shipping city, zip, and region (state)
 
-### Step 3: Identify and Exclude Marketplace Orders
+### Step 3: Identify and Exclude Marketplace Orders (Etsy, Amazon, etc.)
 
-Check order name patterns against the configured Shopify order prefix. Flag any orders with a different prefix as potential marketplace orders (Etsy, Amazon, etc.). Ask the user to confirm if unclear. Exclude confirmed marketplace orders from all calculations since those platforms remit their own taxes.
+Marketplace orders synced to Shopify can be detected by this rule: **if an order has sales tax collected (Taxes > 0) AND the shipping region is NOT a state where the user has nexus, it is a marketplace order.** This is because marketplaces like Etsy and Amazon collect and remit sales tax themselves — the merchant never receives that tax money. These orders may use the same Shopify order prefix as direct orders.
+
+List all detected marketplace orders with their state, city, net sales, and tax. Exclude them from all subsequent calculations (net sales, B&O tax base, and sales tax).
 
 ### Step 4: Anomaly Check — Tax Collected Outside Nexus States
 
