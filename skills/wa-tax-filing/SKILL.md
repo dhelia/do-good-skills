@@ -18,13 +18,15 @@ Go to Shopify Admin > Analytics > Reports > **Total Sales over time** > click **
 
 ```sql
 FROM sales
-  SHOW orders, gross_sales, discounts, returns, net_sales, shipping_charges,
-    duties, additional_fees, taxes, total_sales, shipping_city, shipping_postal_code, shipping_region,
-  TIMESERIES day WITH TOTALS, PERCENT_CHANGE
+  SHOW gross_sales, discounts, returns, net_sales, shipping_charges, return_fees,
+    taxes, total_sales, shipping_city, shipping_postal_code, shipping_region,
+    sales_channel
+  GROUP BY day, sale_id, order_name, product_title_at_time_of_sale,
+    shipping_city, shipping_postal_code, shipping_region, sales_channel WITH TOTALS
   SINCE startOfQuarter(-1q) UNTIL endOfQuarter(-1q)
   ORDER BY day ASC
   LIMIT 1000
-VISUALIZE orders TYPE line
+VISUALIZE total_sales TYPE table
 ```
 
 Adjust the `-1q` values to target the quarter you need:
@@ -46,6 +48,7 @@ The CSV must contain these columns:
 - `Day`, `Sale ID`, `Order name`, `Product title at time of sale`
 - `Gross sales`, `Discounts`, `Returns`, `Net sales`, `Shipping charges`, `Return fees`, `Taxes`, `Total sales`
 - `Shipping city`, `Shipping postal code`, `Shipping region`
+- `Sales channel` (critical for identifying marketplace vs direct orders)
 
 ## Configuration
 
@@ -83,15 +86,20 @@ Read the CSV file. Aggregate line items by `Order name`. For each order, compute
 - Gross sales, Discounts, Returns, Net sales, Shipping charges, Taxes, Total sales
 - Shipping city, zip, and region (state)
 
-### Step 3: Identify and Exclude Marketplace Orders (Etsy, Amazon, etc.)
+### Step 3: Identify and Exclude Marketplace Orders
 
-Marketplace orders synced to Shopify can be detected by this rule: **if an order has sales tax collected (Taxes > 0) AND the shipping region is NOT a state where the user has nexus, it is a marketplace order.** This is because marketplaces like Etsy and Amazon collect and remit sales tax themselves — the merchant never receives that tax money. These orders may use the same Shopify order prefix as direct orders.
+Use the `Sales channel` column to identify marketplace orders:
 
-List all detected marketplace orders with their state, city, net sales, and tax. Exclude them from all subsequent calculations (net sales, B&O tax base, and sales tax).
+1. List all unique sales channels found in the data with order counts and net sales totals.
+2. Exclude orders from known marketplace channels (e.g., "QuickSync for Etsy", "Amazon", "Walmart Marketplace"). Marketplaces collect and remit their own sales tax — the merchant never receives that tax money.
+3. If an unfamiliar channel name appears, ask the user whether it is a marketplace or a direct channel before proceeding.
+4. Keep orders from direct channels: "Online Store", "Draft Orders", "Shop", "POS", and similar.
+
+If the CSV does not contain a `Sales channel` column, ask the user to re-export using the ShopifyQL query in Prerequisites.
 
 ### Step 4: Anomaly Check — Tax Collected Outside Nexus States
 
-Identify any orders shipped to states where the user does NOT have nexus but where sales tax was collected (Taxes > 0). Report these as anomalies. These do NOT affect the WA filing but should be flagged for the user to fix in Shopify Settings > Taxes and duties.
+After excluding marketplace orders, check remaining orders for tax collected on non-nexus state shipments. These are errors (employee mistakes, Shopify misconfiguration, etc.). Flag them for the user but do NOT exclude them from the net sales / B&O calculation — only the tax amount is anomalous.
 
 ### Step 5: Compute Filing Numbers
 
