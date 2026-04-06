@@ -14,6 +14,7 @@ Skills are reusable prompt templates that teach Claude Code how to perform speci
 | [Tax Prep](skills/tax-prep/) | `/tax-prep` | Categorize business expenses from bank/credit card CSVs, generate QuickBooks .qbo import files, and produce a Schedule C-ready P&L. |
 | [Schedule C](skills/schedule-c/) | `/schedule-c` | Generate IRS Schedule C with line-by-line totals and per-line-item transaction CSVs for TurboTax or paper filing. |
 | [Audit Prep](skills/audit-prep/) | `/audit-prep` | Generate audit-proof tax documentation with organized binder, risk assessment, reconciliation checks, and 1099 review. |
+| [Financial Report](skills/financial-report/) | `/financial-report` | Generate an interactive HTML financial report with P&L, drill-down transactions, vendor analysis, and TurboTax-ready numbers. Replaces QuickBooks. |
 
 ## Installation
 
