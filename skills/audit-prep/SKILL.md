@@ -166,3 +166,22 @@ Recommend what to keep and for how long:
 - This skill organizes records but does not provide legal or tax advice
 - Keep digital copies in addition to physical records
 - Consider scanning receipts for expenses >$75 and storing with the transaction files
+
+### Rental Property (Schedule E) Audit Items
+
+Include rental property documentation in the audit binder, not just Schedule C:
+
+- **Depreciation**: Verify the rental property is set up as a depreciable asset. It is common to miss this entirely, especially for accidental landlords. If depreciation was missed in prior years, note the **Form 3115** option (Change in Accounting Method) to catch up — but weigh whether it's worth the hassle based on net benefit after depreciation recapture on sale.
+- **Special assessments**: Capital improvement special assessments (e.g., HOA-levied roof replacement, siding) must be capitalized and depreciated, not expensed in the year paid. Add these to the property's cost basis for gain/loss calculation on sale.
+- **Section 121 exclusion**: $250K single / $500K married exclusion on sale of primary residence if lived in the property 2 of the last 5 years. However, depreciation recapture (Section 1250) still applies for the period the property was rented — taxed at up to 25%.
+- **Passive activity loss rules**: Rental losses are passive by default. If AGI exceeds $150K, rental losses are fully suspended (the $25K special allowance phases out between $100K-$150K). Document all suspended losses each year — they accumulate and release in full on disposition (sale) of the rental property.
+- **Land/building split**: Document the source of the land vs. building allocation ratio (typically the county tax assessor's assessed values). Keep a printout of the county assessment as backup — the IRS may challenge your depreciation basis if the split is not documented.
+
+### Additional Retention Items
+
+| Document | Retention |
+|----------|-----------|
+| County property tax assessments (land/building split) | Duration of ownership + 7 years |
+| Form 3115 (if filed) | Permanent |
+| Rental property depreciation schedules | Duration of ownership + 7 years |
+| Special assessment documentation | Duration of ownership + 7 years |

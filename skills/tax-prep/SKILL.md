@@ -352,3 +352,31 @@ The MEMO field contains the expense category, which QuickBooks can use for auto-
 - For single-member LLCs, business income is reported on Schedule C of your personal 1040
 - Keep all bank statements as backup documentation
 - Contractor payments over $600/year to any single person require a 1099-NEC filing
+
+### Categorization Learnings
+
+- **Credit card payments to suppliers**: When the business uses credit cards to pay suppliers, those charges appear on the CC statement as vendor-specific prefixes. Don't miscategorize supplier payments as office expenses just because they're on a credit card.
+- **Amazon purchases on Amex/CC**: For a product business, Amazon purchases on business credit cards are likely COGS (customer replacement parts), not office supplies. ASK the user before categorizing.
+- **PayPal payments**: May be rent (warehouse/storage services) — don't assume all PayPal transactions are supplier payments or fees. Check the recipient.
+- **Zelle payments**: Need careful review — could be contractors, suppliers, truckers, CPA, repairs, or personal. Always flag for user review with context.
+- **Temp labor platforms** (e.g., Instawork): These platforms handle their own employment taxes (W-2s, withholding). Classify as Contract Labor (Line 11), not wages.
+- **Shopify Capital interest**: Interest is a lump-sum factor fee charged at funding, not accrued over time. On cash basis, it's deductible when paid (i.e., when the loan is funded). For loans funded in prior years, the interest was already deductible in that year — do not double count. Request loan-by-loan statements from Shopify, not just annual summaries.
+- **Line of Credit**: Only interest is deductible, principal repayment is not. LOC advances/draws are NOT income — exclude them from revenue entirely.
+
+### Vendor Classification CSV
+
+- When generating the vendor classification CSV for user review, include a **"Section"** column to separate "Business or Personal?" items (ambiguous) from "Likely Personal" items (high confidence personal).
+
+### TurboTax Category Mapping
+
+- Use TurboTax-specific category names when generating TurboTax-ready output: Vehicle, Home office, Communications, Advertising, Meals, Legal and professional fees, Business travel, Office expenses, Credit card/loan/other interest, Taxes and licenses, Business insurance, Repairs and maintenance, Equipment rental, Building or land rental, Inventory/COGS, Contract labor, Commissions & fees, Other miscellaneous expenses.
+- **Keep categories consistent with prior year filing** to avoid IRS red flags from big year-over-year swings.
+- **Communications** should be broken out from Software — includes phone services, VoIP platforms, messaging/collaboration tools (e.g., Slack, Google Workspace), and virtual phone numbers.
+- **Equipment rental** should be broken out from Car & Truck — truck/equipment rentals (e.g., U-Haul) are equipment rental, not vehicle expenses.
+
+### Tax Rules to Remember
+
+- **Passive activity loss rules**: Rental losses are passive and suspended if AGI > $150K. They release (become deductible) on sale/disposition of the rental property.
+- **Home office deduction**: Cannot increase a net loss — it can only bring you to $0. Any excess carries forward.
+- **Vehicle expenses**: Require a mileage log to claim. Do not claim vehicle deduction without one.
+- **Meals**: Enter the full amount paid. TurboTax auto-applies the 50% limitation — do not pre-halve the amount.

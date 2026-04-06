@@ -150,3 +150,41 @@ Create `PROFIT_AND_LOSS_[YEAR].md` with:
 - No self-employment tax when there is a net loss
 - Keep all supporting files for 7 years (IRS statute of limitations is 3 years, but 7 for significant understatement)
 - This is not tax advice — have a CPA review before filing
+
+### TurboTax COGS Sub-Lines
+
+TurboTax breaks COGS into specific sub-lines on Part III. Map COGS components accordingly:
+
+| TurboTax COGS Sub-Line | What goes here |
+|---|---|
+| **Cost of Purchases** (Line 36) | Inventory purchases from suppliers (wire transfers, CC payments to manufacturers) |
+| **Purchases Withdrawn for Personal Use** (Line 37) | Any inventory taken for personal use (reduces COGS) |
+| **Labor Costs** (Line 37) | Direct labor for producing goods (not admin/office staff) |
+| **Materials and Supplies** (Line 38) | Customer replacement parts, packaging materials, supplies used in production |
+| **Other Costs to Prepare for Sales** (Line 39) | Customs duties, fulfillment/3PL fees, freight/trucking, import brokerage |
+
+### TurboTax Reconciliation Section
+
+When generating the Schedule C document, include a reconciliation section showing calculated totals vs. as-filed amounts with explanations for each difference:
+
+```
+## TurboTax Reconciliation: Calculated vs. As-Filed
+
+| Line Item | Calculated | As-Filed | Difference | Explanation |
+|---|---|---|---|---|
+| Vehicle | $X,XXX | $0 | -$X,XXX | Skipped: no mileage log available |
+| Home office | $1,500 | $1,250 | -$250 | Cannot increase net loss — capped at $0 |
+| Meals | $2,000 | $1,000 | -$1,000 | 50% limitation applied by TurboTax |
+| Total expenses | $XX,XXX | $XX,XXX | -$X,XXX | Sum of adjustments above + rounding |
+```
+
+### Schedule C Line 32: At Risk
+
+- **Line 32** ("At risk" box): Should be checked for single-member LLCs
+- **Line 32a** ("All investment is at risk"): Check this box — applies to sole proprietors and single-member LLCs where the owner has personal liability
+
+### Vehicle Worksheet
+
+- If not claiming vehicle expenses (e.g., no mileage log), enter **0 miles** on the vehicle worksheet
+- If vehicle was claimed in prior years, you still need to fill out the vehicle worksheet questions (date placed in service, business use percentage = 0%, etc.) even if claiming $0 this year
+- TurboTax will prompt for these questions — do not skip the worksheet entirely

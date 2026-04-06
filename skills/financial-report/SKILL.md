@@ -258,6 +258,7 @@ open [path]/report.html
 
 ## Notes
 
+- **IMPORTANT: All transaction data must be embedded directly in the HTML as a JavaScript variable (e.g., `const DATA = [...]`). Do NOT use `fetch()` to load external JSON files — browsers block local file fetch via CORS policy when opening `file://` URLs. This is the #1 cause of blank reports.**
 - The HTML file is typically 300-500KB depending on transaction count (data is embedded)
 - Works in all modern browsers (Chrome, Safari, Firefox, Edge)
 - No server needed — opens directly from the filesystem
@@ -266,3 +267,21 @@ open [path]/report.html
 - The report is read-only — it's a snapshot, not a live accounting system
 - Generate a new report each time you update categorizations
 - This is not accounting software and not tax advice — have a CPA review before filing
+
+### TurboTax Tab: COGS Sub-Lines
+
+The TurboTax tab should break COGS into TurboTax-specific sub-lines rather than showing a single "Inventory" total:
+
+| TurboTax COGS Sub-Line | What it includes |
+|---|---|
+| **Cost of Purchases** | Inventory purchases from suppliers |
+| **Materials and Supplies** | Customer replacement parts, packaging |
+| **Other Costs to Prepare for Sales** | Customs, fulfillment/3PL, freight, trucking |
+
+### TurboTax Reconciliation Section
+
+Include a **TurboTax Reconciliation** section at the bottom of the TurboTax tab showing calculated vs. as-filed amounts with explanations for each difference. This helps the user understand why the report totals may differ from what they actually enter in TurboTax (e.g., vehicle skipped due to no mileage log, home office capped to avoid increasing loss, meals at 50%, rounding).
+
+### Breakdown Visibility
+
+- When a TurboTax line item or category has sub-items, the breakdown should be **visible by default** (expanded), not hidden behind a click. Users need to see what's inside each category at a glance without clicking every row.
